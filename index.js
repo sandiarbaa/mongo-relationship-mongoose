@@ -39,18 +39,18 @@ const User = mongoose.model("User", userSchema);
 
 // makeUser();
 
-const addAddress = async (id) => {
-  const user = await User.findById(id);
-  user.addresses.push({
-    street: "Jl. Benteng Betawi",
-    city: "Tangerang",
-    country: "Indonesia",
-  });
-  const res = await user.save();
-  console.log(res);
-};
+// const addAddress = async (id) => {
+//   const user = await User.findById(id);
+//   user.addresses.push({
+//     street: "Jl. Benteng Betawi",
+//     city: "Tangerang",
+//     country: "Indonesia",
+//   });
+//   const res = await user.save();
+//   console.log(res);
+// };
 
-addAddress("66d3b377628242cad4285921");
+// addAddress("66d3b377628242cad4285921");
 
 // ini implementasi relationship menggunakan mongoose
 // ini relationship one to few(many)
