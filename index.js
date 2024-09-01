@@ -55,4 +55,4 @@ addAddress("66d3b377628242cad4285921");
 // ini implementasi relationship menggunakan mongoose
 // ini relationship one to few(many)
 // jadi 1 entitas/schema user bisa memiliki banyak data, tapi masih di simpan di dalam 1 document yg sama
-// contohnya 1 user memiliki banyak alamat
+// dalam case ini contohnya 1 user memiliki banyak alamat
