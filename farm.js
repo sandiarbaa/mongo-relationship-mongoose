@@ -32,6 +32,7 @@ const farmSchema = new mongoose.Schema({
 const Product = mongoose.model("Product", productSchema);
 const Farm = mongoose.model("Farm", farmSchema);
 
+// MEMBUAT DATA PRODUCTS
 // Product.insertMany([
 //   {
 //     name: "Mellon",
@@ -50,6 +51,7 @@ const Farm = mongoose.model("Farm", farmSchema);
 //   },
 // ]);
 
+// MENAMBAHKAN FARM BARU, SEKALIGUS DENGAN DATA PRODUCTNYA
 // const makeFarm = async () => {
 //   const farm = new Farm({
 //     name: "Farm",
@@ -65,15 +67,24 @@ const Farm = mongoose.model("Farm", farmSchema);
 
 // makeFarm();
 
-const addProduct = async (id) => {
-  const farm = await Farm.findById(id); // cari dari model. Cari document farm yg ingin ditambahkan data product nya
-  const watermelon = await Product.findOne({ name: "Watermelon" }); // cari product yg ingin di tambahkan ke collections farm
-  farm.products.push(watermelon); // masukan document product ke collections farm
-  await farm.save(); // save agar datanya masuk ke dalam collection farm
-  console.log(farm);
-};
+//  MENAMBAHKAN PRODUCT KE FARM YG SUDAH ADA
+// const addProduct = async (id) => {
+//   const farm = await Farm.findById(id); // cari dari model. Cari document farm yg ingin ditambahkan data product nya
+//   const watermelon = await Product.findOne({ name: "Watermelon" }); // cari product yg ingin di tambahkan ke collections farm
+//   farm.products.push(watermelon); // masukan document product ke collections farm
+//   await farm.save(); // save agar datanya masuk ke dalam collection farm
+//   console.log(farm);
+// };
 
-addProduct("66d4026c5d85dda3764047a4");
+// addProduct("66d4026c5d85dda3764047a4");
 
-// jadi ini sudah mempraktekkan one to many di mongodb
-// 1 farm itu bisa punya beberapa product yg dihasilkan ceritanya
+Farm.findOne({ name: "Farm" })
+  // parameter 1 => populate ini berisi field mana yg menyimpan kumpulan id dari document yg berelasi, harus persis penulisan fieldnya namanya
+  // parameter 2 => field mana yang ingin ditampilkan
+  .populate("products", "name")
+  .then((farm) => {
+    console.log(farm);
+    // for (product of farm.products) {
+    //   console.log(product.name);
+    // }
+  });
